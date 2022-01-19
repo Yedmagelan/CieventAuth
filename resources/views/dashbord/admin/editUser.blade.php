@@ -44,7 +44,14 @@
 
                       <div class="form-group">
                         <label for="exampleInputEmail1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adresse e-mail</font></font></label>
-                        <input type="text" name="role" class="form-control" id="exampleInputEmail1" value="{{ $user->role }}">
+                        
+                        <select class="form-select" name="role" aria-label="Default select example">
+                         @if( auth()->user()->role ===0 )
+                             <option value="0">Auteur</option>
+                         @endif 
+                        <option value="1">Administateur</option>
+                          <option value="2">Utilisateur</option>
+                        </select>
                       </div>
 
                       <div class="form-group">

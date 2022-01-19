@@ -47,7 +47,7 @@ class LoginController extends Controller
           
          if( Auth()->user()->role === 2){
             //   return route('user.dashbord');
-            if(Auth()->user()->status === 1 ){
+            if(Auth()->user()->status === 2 ){
                 return route('user.dashbord');
               }
           }

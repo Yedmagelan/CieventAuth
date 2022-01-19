@@ -39,16 +39,17 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
      //Accueil pour admin
     Route::get('/dashbord', [AdminController::class, 'index'])->name('admin.dashbord');
      Route::get('/dashbord/users', [AdminController::class, 'users'])->name('admin.users');
-     //Accueil pour gestion users
+     //Accueil admin pour gestion users
      Route::get('dashbord/users/{id}', [AdminController::class, 'editUsers'])->name('admin.editUsers');
      Route::post('dashbord/users', [AdminController::class, 'updateUsers'])->name('admin.updateUsers');
 
      Route::get('dashbord/desactive/{id}', [AdminController::class, 'desactive'])->name('admin.activeUsers');
      Route::get('dashbord/active/{id}', [AdminController::class, 'active'])->name('admin.desactiveUsers');
-
-     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+     //Accueil admin profile users
      Route::get('/dashbord/usersCreate', [AdminController::class, 'usersCreate'])->name('admin.usersCreate');
      Route::post('/dashbord/usersInstore', [AdminController::class, 'usersInstore'])->name('admin.store');
+          //Accueil admin profile users
+    Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
 });
 
