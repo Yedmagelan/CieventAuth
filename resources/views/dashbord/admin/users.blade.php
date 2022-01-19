@@ -59,9 +59,7 @@
                       @endphp
 
                         @foreach ($users as $row)
-                             <tr class="@if($row->status== 1)
-                                          bg-lu
-                                        @endif">
+                             <tr>
                                  <td>{{ $i++ }}</td>
                                  <td>{{ $row->name }}</td>
                                  <td>{{ $row->prenom }}</td>
@@ -69,27 +67,53 @@
                                  <td>{{ $row->email }}</td>
                                  <td>{{ $row->contact }}</td>
                                  <td>
-                                   @if($row->role==1)
-                                    <span class="bg-warning p-2">{{ __('Admin') }} </span>
-                                  @else 
-                                  <span class="text-warning">{{ __('User') }}</span>
-                                  @endif
-                                 </td>
-
-                                 <td> 
-                                   <a href="users/{{ $row->id }}">
-                                   <label class="badge badge-info" style="cursor: pointer;"> <i class="mdi mdi-border-color"></i> </label> </a>
+                                    @if($row->role==1)
+                                      <span class="bg-warning p-2">{{ __('Admin') }} </span>
+                                    @elseif($row->role==0) 
+                                      <span class="text-success">{{ __('Auteur') }}</span>
+                                    @else
+                                      <span class="text-warning">{{ __('user') }}</span>
+                                    @endif
                                   </td>
+
                                  <td>
-                                 @if($row->status==1)
-                                  <a href="desactive/{{ $row->id }} " onclick="return confirm('Voulez-vous desactiver ?')">
-                                    <label class="badge badge-success" style="cursor: pointer;"> activé</i> </label> 
-                                  </a>
-                                  @else 
-                                  <a href="active/{{ $row->id }} " onclick="return confirm('Voulez-vous activer ?')">
-                                      <label class="badge badge-danger" style="cursor: pointer;"> desactivé</i> </label> 
-                                  </a>
-                                  @endif
+                                    @if( $row->role ===0 )
+                                    <p>
+                                      <label class="badge badge-danger"> 
+                                         <i class="mdi mdi-account-key"></i> 
+                                     </label>
+                                    </p>
+                                    @else
+                                   <a href="users/{{ $row->id }}">
+                                      <label class="badge badge-info" style="cursor: pointer;"> 
+                                         <i class="mdi mdi-border-color"></i> 
+                                     </label>
+                                   </a>
+                                   @endif
+                                  </td>
+
+                                 <td>
+                                 @if( $row->role ===0 )
+                                     @if($row->status==1)
+                                      <p>
+                                         <label class="badge badge-success"> activé</i> </label> 
+                                      </p>
+                                      @endif
+                                 @else
+                                    @if($row->status==1)
+                                      <a href="desactive/{{ $row->id }} " onclick="return confirm('Voulez-vous desactiver ?')">
+                                        <label class="badge badge-success" style="cursor: pointer;"> activé</i> </label> 
+                                      </a>
+                                      @else 
+                                      <a href="active/{{ $row->id }} " onclick="return confirm('Voulez-vous activer ?')">
+                                          <label class="badge badge-danger" style="cursor: pointer;"> desactivé</i> </label> 
+                                      </a>
+                                      @endif
+
+                                 @endif
+
+                                  
+                                  
                                 </td>
                                  
                              </tr>

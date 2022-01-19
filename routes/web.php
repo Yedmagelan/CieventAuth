@@ -54,7 +54,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
-    Route::get('/dashbord', [AdminController::class, 'index'])->name('user.dashbord');
-    Route::get('/profile', [AdminController::class, 'profile'])->name('user.profile');
-    Route::get('/settings', [AdminController::class, 'settings'])->name('user.settings');
+    Route::get('/dashbord', [UserController::class, 'index'])->name('user.dashbord');
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/settings', [UserController::class, 'settings'])->name('user.settings');
 });
