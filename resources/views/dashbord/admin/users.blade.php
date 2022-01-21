@@ -67,9 +67,9 @@
                                  <td>{{ $row->email }}</td>
                                  <td>{{ $row->contact }}</td>
                                  <td>
-                                    @if($row->role==1)
+                                    @if($row->name=='admin')
                                       <span class="bg-warning p-2">{{ __('Admin') }} </span>
-                                    @elseif($row->role==0) 
+                                    @elseif($row->role==1) 
                                       <span class="text-success">{{ __('Auteur') }}</span>
                                     @else
                                       <span class="text-warning">{{ __('user') }}</span>
@@ -77,7 +77,7 @@
                                   </td>
 
                                  <td>
-                                    @if( $row->role ===0 )
+                                    @if( $row->role ===1 )
                                     <p>
                                       <label class="badge badge-danger"> 
                                          <i class="mdi mdi-account-key"></i> 
@@ -93,7 +93,7 @@
                                   </td>
 
                                  <td>
-                                 @if( $row->role ===0 )
+                                 @if( $row->role ===1 )
                                      @if($row->status==1)
                                       <p>
                                          <label class="badge badge-success"> activé</i> </label> 

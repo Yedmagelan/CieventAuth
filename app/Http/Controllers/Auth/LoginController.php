@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class LoginController extends Controller
 {
@@ -30,27 +31,24 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
       protected function redirectTo(){
-          if( Auth()->user()->role === 0 ){
 
-              if( Auth()->user()->status === 1 ){
-                return route('admin.dashbord');
-              }
+        // if( Auth()->user()->role == 0){
+        //     return route('admin.dashbord');
+        // }
+        // else
+        if( Auth()->user()->status == 0){
 
+          if( Auth()->user() == 1){
+            return route('admin.dashbord');
           }
-
-          if( Auth()->user()->role === 1 ){
-
-            if(Auth()->user()->status === 1 ){
-                return route('admin.dashbord');
-              }
-         }
-          
-         if( Auth()->user()->role === 2){
-            //   return route('user.dashbord');
-            if(Auth()->user()->status === 2 ){
-                return route('user.dashbord');
-              }
+           if( Auth()->user() == 2){
+            return route('user.dashbord');
           }
+        }
+          else{
+
+            return redirect()->back()->with('error','Votre compte a été desacté veuillez contacter administrateur');
+        }
       }
       
 
@@ -72,35 +70,26 @@ class LoginController extends Controller
        ]);
 
        if( auth()->attempt(array('email'=>$input['email'], 'password'=>$input['password'])) ){
-
-
-        if( auth()->user()->role === 0 ){
-            return redirect()->route('admin.dashbord');
-        }
-
-        elseif( auth()->user()->role === 1 ){
-            
-            if( auth()->user()->status === 1 ){
+      
+        if( auth()->user()->status == 1){
+   
+            if( auth()->user()->role == 1){
                 return redirect()->route('admin.dashbord');
-            }else{
-                return redirect()->route('login')->with('error','Votre compte a été desacté veuillez contacter administrateur');
+            }
+        if( auth()->user()->role == 2 ){
+            return redirect()->route('user.dashbord');
         }
-     }
+        // else{
+        //     return redirect()->back()->with('error','Votre compte a été desacté veuillez contacter administrateur');
+        // }
 
-        elseif( auth()->user()->role === 2 ){
-
-            if( auth()->user()->status === 1 ){
-                return redirect()->route('user.dashbord');
-            }else{
-                return redirect()->route('login')->with('error','Votre compte a été desacté veuillez contacter administrateur');
-        }
-            // return redirect()->route('user.dashbord');
-        }
-
-      else{
-           return redirect()->route('login')->with('error','Email et le mot de passe sont erronés');
        }
-
+           else{
+            return redirect()->back()->with('error','Votre compte a été desacté veuillez contacter administrateur');
+          }
+        } else{
+           return redirect()->back()->with('error','Email et le mot de passe sont erronés');
+       }
+     
     }
-}
 }
