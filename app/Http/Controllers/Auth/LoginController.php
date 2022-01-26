@@ -76,9 +76,9 @@ class LoginController extends Controller
             if( auth()->user()->role == 1){
                 return redirect()->route('admin.dashbord');
             }
-        if( auth()->user()->role == 2 ){
-            return redirect()->route('user.dashbord');
-        }
+            if( auth()->user()->role == 2 ){
+                  return redirect()->route('user.dashbord');
+            }
         // else{
         //     return redirect()->back()->with('error','Votre compte a été desacté veuillez contacter administrateur');
         // }

@@ -69,7 +69,14 @@
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="{{ route('admin.profile') }}">
                   <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider">
+    
+                </div>
+                <a class="dropdown-item" href="{{ route('admin.updatePwd') }}">
+                  <i class="mdi mdi-cached me-2 text-success"></i>Modifier Mot de passe </a>
+                <div class="dropdown-divider">
+    
+                </div>
 
                 <!-- Gerer la deconnection  -->
                 <a class="dropdown-item" href="{{ route('logout') }}"

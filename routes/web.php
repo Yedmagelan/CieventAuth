@@ -50,11 +50,17 @@ Route::group(['prefix'=>'admin', 'middleware'=>['isAdmin','auth','PreventBackHis
      Route::post('/dashbord/usersInstore', [AdminController::class, 'usersInstore'])->name('admin.store');
           //Accueil admin profile users
     Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('/profilePwd', [AdminController::class, 'updatePwd'])->name('admin.updatePwd');
+    Route::post('/profile', [AdminController::class, 'profileUsers'])->name('admin.profileUsers'); 
+    Route::post('/profile', [AdminController::class, 'pwdProfile'])->name('admin.pwdProfile');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['isUser','auth','PreventBackHistory']], function(){
     Route::get('/dashbord', [UserController::class, 'index'])->name('user.dashbord');
+    Route::post('/profile1', [UserController::class, 'profileUsers'])->name('user.update'); 
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/profilePwd', [UserController::class, 'updatePwd'])->name('user.updatePwd');
+    Route::post('/profile', [UserController::class, 'pwdProfile'])->name('user.pwdProfile');
     Route::get('/settings', [UserController::class, 'settings'])->name('user.settings');
 });

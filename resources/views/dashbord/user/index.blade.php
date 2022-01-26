@@ -6,7 +6,12 @@
         <div class="col-lg-12">
             <div class="card text-center">
                
-            <h1> Bonjour {{ Auth::user()->name }}</h1>
+            <div class="p-5 bg-success text-white text-center">
+              <h1> welcome à notre page web</h1>
+              <p>
+              {{ Auth::user()->name }}
+              </p> 
+            </div>
                 
             </div>
         </div>

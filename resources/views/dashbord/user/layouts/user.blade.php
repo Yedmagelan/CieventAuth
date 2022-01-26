@@ -38,8 +38,8 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="{{ url('admin.dashbord') }}"><img src="{{ asset('front/img/logo.png') }}" alt="logo" class="img-fluid"/></a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('admin.dashbord') }}"><img src="{{ asset('front/img/logo.png') }}" alt="logo"  class="img-fluid" /></a>
+          <a class="navbar-brand brand-logo" href="{{ url('user/dashbord') }}"><img src="{{ asset('front/img/logo.png') }}" alt="logo" class="img-fluid"/></a>
+          <a class="navbar-brand brand-logo-mini" href="{{ url('user/dashbord') }}"><img src="{{ asset('front/img/logo.png') }}" alt="logo"  class="img-fluid" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -69,6 +69,10 @@
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="{{ route('user.profile') }}" class="nav-link">
                   <i class="mdi mdi-cached me-2 text-success"></i> Profile </a>
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="{{ route('user.updatePwd') }}" class="nav-link">
+                  <i class="mdi mdi-cached me-2 text-success"></i> changer Mot de passe </a>
                 <div class="dropdown-divider"></div>
 
                 <!-- Gerer la deconnection  -->
